@@ -1,22 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { getCategories, storeCategories } = require('../controllers/categoriesController');
 
 
-router.get('/', (req, res) => {
-    res.json({
-        message: 'Categories',
-        status: 200,
-        data: [
-            { id: 1, name: 'Electronics' },
-            { id: 2, name: 'Clothing' },
-            { id: 3, name: 'Books' },
-        ],
-    });
-})
+router.get('/', getCategories);
 
-router.post('/add', (req, res) => {
-    res.send('Add a new category!');
-})
+router.post('/', storeCategories);
 
 router.put('/:id', (req, res) => {
     res.send(`Update category with id: ${req.params.id}`);
